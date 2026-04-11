@@ -194,16 +194,7 @@ export default function WeddingInvitation() {
             ұлттық нақыштағы киім құпталады{" "}
           </p>
         </div>
-        <img
-          src={Tore}
-          style={{
-            height: ScreenHeight(20),
-            marginLeft: ScreenWidth(26),
-            marginRight: ScreenWidth(20),
-            opacity: 0.6,
-            zIndex: 100,
-          }}
-        />
+
         <Details sectionRef={detailsRefs} />
         <img
           src={Tore}
@@ -216,17 +207,7 @@ export default function WeddingInvitation() {
           }}
         />
         <Form sectionRef={formRefs} />
-        <img
-          src={Tore}
-          style={{
-            height: ScreenHeight(20),
-            marginLeft: ScreenWidth(26),
-            marginRight: ScreenWidth(20),
-            marginBottom: ScreenHeight(5),
-            opacity: 0.6,
-            zIndex: 100,
-          }}
-        />
+
         <Introduction closing={true} sectionRef={closingRefs} />
       </div>
     </>
