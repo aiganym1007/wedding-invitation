@@ -1,0 +1,169 @@
+import { useState, useEffect, useRef, useMemo } from "react";
+import Introduction, { ScreenHeight } from "./introduction";
+import InvitationSection from "./letter";
+import Details from "./details";
+import Form from "./form";
+import Schedule from "./schedule";
+import OldPaper from "./assets/image.png";
+const FONTS = `
+@keyframes floatUpRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.element {
+  animation: floatUpRotate 5s linear infinite;
+  transform-origin: center center;
+}
+.bg-wrapper {
+  position: relative;
+}
+.bg-wrapper::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url('/assets/image.png') center/cover no-repeat;
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 0;
+}
+.bg-wrapper > * {
+  position: relative;
+  z-index: 1;
+}
+`;
+function NavDots({
+  current,
+  total,
+  onNav,
+}: {
+  current: number;
+  total: number;
+  onNav: (i: number) => void;
+}) {
+  return (
+    <div
+      style={{
+        position: "fixed",
+        right: 20,
+        top: "50%",
+        transform: "translateY(-50%)",
+        display: "flex",
+        flexDirection: "column",
+        gap: 10,
+        zIndex: 100,
+      }}
+    >
+      {Array.from({ length: total }).map((_, i) => (
+        <button
+          key={i}
+          onClick={() => onNav(i)}
+          style={{
+            width: 8,
+            height: 8,
+            borderRadius: "50%",
+            border: `1px solid ${"#B8973C"}`,
+            background: i === current ? "#B8973C" : "transparent",
+            cursor: "pointer",
+            padding: 0,
+            transition: "all .3s",
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+export default function WeddingInvitation() {
+  const introductionRefs = useRef<HTMLDivElement | null>(null);
+  const closingRefs = useRef<HTMLDivElement | null>(null);
+  const inviteRefs = useRef<HTMLDivElement | null>(null);
+  const detailsRefs = useRef<HTMLDivElement | null>(null);
+  const formRefs = useRef<HTMLDivElement | null>(null);
+
+  const refs = useMemo(
+    () => [introductionRefs, inviteRefs, detailsRefs, formRefs, closingRefs],
+    [],
+  );
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            const i = refs.findIndex((r) => r.current === e.target);
+            if (i >= 0) setCurrent(i);
+          }
+        });
+      },
+      { threshold: 0.5 },
+    );
+    refs.forEach((r) => r.current && obs.observe(r.current));
+    return () => obs.disconnect();
+  }, []);
+
+  const navTo = (i: number) =>
+    refs[i].current?.scrollIntoView({ behavior: "smooth" });
+
+  return (
+    <>
+      <style>{FONTS}</style>
+      <div
+        className="bg-wrapper"
+        style={{
+          overflowX: "hidden",
+          overflowY: "hidden",
+          fontFamily: "'Cormorant Garamond',serif",
+          background:
+            "radial-gradient(ellipse 70% 60% at 50% 50%, #FDF6EC 0%, #f1e3d2 100%)",
+        }}
+      >
+        <img
+          src={OldPaper}
+          alt="Old Paper"
+          style={{
+            position: "fixed",
+            height: "100%",
+            opacity: 0.4,
+            marginBottom: -ScreenHeight(30),
+            zIndex: 1,
+          }}
+        />
+        <NavDots current={current} total={5} onNav={navTo} />
+        <Introduction sectionRef={introductionRefs} />
+        <InvitationSection sectionRef={inviteRefs} />
+        <Schedule />
+        <p
+          style={{
+            marginTop: ScreenHeight(20),
+            marginBottom: -ScreenHeight(5),
+            fontFamily: "'Cormorant Garamond',serif",
+            fontSize: "clamp(25px,2.5vw,22px)",
+            lineHeight: 1.95,
+            color: "#B8973C",
+            textAlign: "center",
+            fontWeight: "bold",
+          }}
+        >
+          Киім үлгісі:
+        </p>
+        <p
+          style={{
+            textAlign: "center",
+            fontFamily: "'Cormorant Garamond',serif",
+            fontSize: "clamp(25px,1.5vw,22px)",
+            lineHeight: 1.95,
+            color: "#3D2012",
+            fontWeight: 300,
+            marginBottom: ScreenHeight(25),
+          }}
+        >
+          ұлттық нақыштағы киім құпталады{" "}
+        </p>
+        <Details sectionRef={detailsRefs} />
+        <Form sectionRef={formRefs} />
+        <Introduction closing={true} sectionRef={closingRefs} />
+      </div>
+    </>
+  );
+}
