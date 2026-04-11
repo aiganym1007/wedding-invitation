@@ -18,25 +18,26 @@ interface FromsProps {
 
 export default function Form({ sectionRef }: FromsProps) {
   const [form, setForm] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     attend: "yes",
-    guests: "0",
-    meal: "",
+    plusOne: false,
+    plusOneFirstName: "",
+    plusOneLastName: "",
     message: "",
   });
   const [status, setStatus] = useState("idle");
-  const [errors, setErrors] = useState<
-    Partial<Record<keyof typeof form, string>>
-  >({});
+  const [errors, setErrors] = useState<Partial<Record<string, string>>>({});
 
-  const set = (k: keyof typeof form, v: string) => {
+  const set = (k: string, v: string | boolean) => {
     setForm((p) => ({ ...p, [k]: v }));
     setErrors((e) => ({ ...e, [k]: "" }));
   };
 
   const validate = () => {
-    const newErrors: Partial<Record<keyof typeof form, string>> = {};
-    if (!form.name.trim()) newErrors.name = "Атыңызды енгізіңіз";
+    const newErrors: Partial<Record<string, string>> = {};
+    if (!form.firstName.trim()) newErrors.firstName = "Атыңызды енгізіңіз";
+    if (!form.lastName.trim()) newErrors.lastName = "Тегіңізді енгізіңіз";
     if (!form.message.trim()) newErrors.message = "Тілегіңізді жазыңыз";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -46,14 +47,19 @@ export default function Form({ sectionRef }: FromsProps) {
     if (!validate()) return;
     setStatus("loading");
     try {
-      const res = await fetch("https://formspree.io/f/mwvwajkj", {
+      const body: Record<string, string> = {
+        name: `${form.firstName} ${form.lastName}`,
+        willAttend: form.attend === "yes" ? "Придёт" : "Не придёт",
+        message: form.message,
+      };
+      if (form.plusOne && (form.plusOneFirstName || form.plusOneLastName)) {
+        body.plusOne =
+          `${form.plusOneFirstName} ${form.plusOneLastName}`.trim();
+      }
+      const res = await fetch("https://formspree.io/f/mqegrdel", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: form.name,
-          willAttend: form.attend === "yes" ? "Придёт" : "Не придёт",
-          message: form.message,
-        }),
+        body: JSON.stringify(body),
       });
       if (!res.ok) throw new Error();
       setStatus("success");
@@ -93,6 +99,11 @@ export default function Form({ sectionRef }: FromsProps) {
     marginTop: 4,
   };
 
+  const dividerStyle: React.CSSProperties = {
+    borderTop: "1px solid #E8D5A0",
+    margin: "24px 0",
+  };
+
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -117,14 +128,13 @@ export default function Form({ sectionRef }: FromsProps) {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          alignItems: "center", // ← центрирование по горизонтали
+          alignItems: "center",
           zIndex: 10,
           padding: "64px 0",
           boxSizing: "border-box",
           width: "100%",
         }}
       >
-        {/* Заголовок */}
         <div
           style={{
             textAlign: "center",
@@ -148,12 +158,11 @@ export default function Form({ sectionRef }: FromsProps) {
           </h2>
         </div>
 
-        {/* Контейнер формы — занимает всю ширину минус отступы */}
         <div
           style={{
             width: "100%",
-            maxWidth: 480, // ← не растягивается на планшетах
-            padding: "0 16px", // ← боковые отступы адаптивные
+            maxWidth: 480,
+            padding: "0 16px",
             boxSizing: "border-box",
           }}
         >
@@ -191,7 +200,7 @@ export default function Form({ sectionRef }: FromsProps) {
                   margin: "0 0 8px",
                 }}
               >
-                Спасибо!
+                Рақмет!
               </p>
               <p
                 style={{
@@ -204,7 +213,7 @@ export default function Form({ sectionRef }: FromsProps) {
               >
                 {form.attend === "yes"
                   ? "Біз сіздермен кездесуді асыға күтеміз!"
-                  : "Өкінішті, сіз келе алмайсыз. Біз скучно боламыз."}
+                  : "Сіз келмейтініңіз өкінішті."}
               </p>
             </div>
           ) : (
@@ -212,24 +221,40 @@ export default function Form({ sectionRef }: FromsProps) {
               style={{
                 border: `1px solid #E8D5A0`,
                 background: "#fffbf7",
-                padding: "clamp(20px, 5vw, 40px) clamp(16px, 5vw, 32px)", // ← адаптивный padding
+                padding: "clamp(20px, 5vw, 40px) clamp(16px, 5vw, 32px)",
                 boxSizing: "border-box",
                 width: "100%",
               }}
             >
-              {/* Имя */}
-              <div style={{ marginBottom: 20 }}>
-                <label style={labelStyle}>Сіздің атыңыз *</label>
-                <input
-                  style={fieldStyle(!!errors.name)}
-                  value={form.name}
-                  onChange={(e) => set("name", e.target.value)}
-                  placeholder="Аты - жөнізді жазыңыз"
-                />
-                {errors.name && <p style={errorStyle}>{errors.name}</p>}
+              {/* Имя + Фамилия */}
+              <div style={{ display: "flex", gap: 10, marginBottom: 20 }}>
+                <div style={{ flex: 1 }}>
+                  <label style={labelStyle}>Аты *</label>
+                  <input
+                    style={fieldStyle(!!errors.firstName)}
+                    value={form.firstName}
+                    onChange={(e) => set("firstName", e.target.value)}
+                    placeholder="Аты"
+                  />
+                  {errors.firstName && (
+                    <p style={errorStyle}>{errors.firstName}</p>
+                  )}
+                </div>
+                <div style={{ flex: 1 }}>
+                  <label style={labelStyle}>Тегі *</label>
+                  <input
+                    style={fieldStyle(!!errors.lastName)}
+                    value={form.lastName}
+                    onChange={(e) => set("lastName", e.target.value)}
+                    placeholder="Тегі"
+                  />
+                  {errors.lastName && (
+                    <p style={errorStyle}>{errors.lastName}</p>
+                  )}
+                </div>
               </div>
 
-              {/* Посещение */}
+              {/* Растау */}
               <div style={{ marginBottom: 20 }}>
                 <label style={labelStyle}>Растау *</label>
                 <div style={{ display: "flex", gap: 10 }}>
@@ -253,7 +278,7 @@ export default function Form({ sectionRef }: FromsProps) {
                         letterSpacing: "0.05em",
                         transition: "all .25s",
                         lineHeight: 1.4,
-                        minHeight: 48, // ← удобно нажимать на маленьких экранах
+                        minHeight: 48,
                       }}
                     >
                       {l}
@@ -262,7 +287,65 @@ export default function Form({ sectionRef }: FromsProps) {
                 </div>
               </div>
 
-              {/* Пожелание */}
+              {/* + 1 toggle */}
+              <div style={{ marginBottom: form.plusOne ? 16 : 20 }}>
+                <div style={dividerStyle} />
+                <button
+                  onClick={() => set("plusOne", !form.plusOne)}
+                  style={{
+                    width: "100%",
+                    padding: "11px 14px",
+                    border: `1px solid ${form.plusOne ? "#B8973C" : "#E8D5A0"}`,
+                    background: form.plusOne
+                      ? "rgba(184,151,60,0.08)"
+                      : "rgba(255,255,255)",
+                    color: form.plusOne ? "#B8973C" : "#7A6245",
+                    fontFamily: "'Jost',sans-serif",
+                    fontSize: "clamp(11px, 3vw, 13px)",
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    cursor: "pointer",
+                    transition: "all .25s",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 8,
+                  }}
+                >
+                  <span style={{ fontSize: "1.2em", lineHeight: 1 }}>
+                    {form.plusOne ? "−" : "+"}
+                  </span>
+                  {form.plusOne
+                    ? "Қосымша қонақты алып тастау"
+                    : "Қосымша қонақ қосу (+1)"}
+                </button>
+              </div>
+
+              {/* + 1 поля */}
+              {form.plusOne && (
+                <div style={{ display: "flex", gap: 10, marginBottom: 20 }}>
+                  <div style={{ flex: 1 }}>
+                    <label style={labelStyle}>+1 Аты</label>
+                    <input
+                      style={fieldStyle(false)}
+                      value={form.plusOneFirstName}
+                      onChange={(e) => set("plusOneFirstName", e.target.value)}
+                      placeholder="Аты"
+                    />
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <label style={labelStyle}>+1 Тегі</label>
+                    <input
+                      style={fieldStyle(false)}
+                      value={form.plusOneLastName}
+                      onChange={(e) => set("plusOneLastName", e.target.value)}
+                      placeholder="Тегі"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Тілек */}
               <div style={{ marginBottom: 28 }}>
                 <label style={labelStyle}>Тілек *</label>
                 <textarea
@@ -305,7 +388,7 @@ export default function Form({ sectionRef }: FromsProps) {
                     textTransform: "uppercase",
                     cursor: "pointer",
                     transition: "all .3s",
-                    minWidth: "60%", // ← кнопка не слишком узкая
+                    minWidth: "60%",
                   }}
                   onClick={submit}
                   disabled={status === "loading"}

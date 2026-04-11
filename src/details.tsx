@@ -48,7 +48,7 @@ export default function DetailsSection({ sectionRef }: DetailsProps) {
             fontStyle: "italic",
           }}
         >
-          Өтетін мейрамханасы
+          Өтетін орны
         </h2>
 
         <div
@@ -94,80 +94,80 @@ export default function DetailsSection({ sectionRef }: DetailsProps) {
               }}
               title="map"
             />
-          </a>
-          <div
-            style={{
-              background: "rgba(253,246,236,0.97)",
-              padding: "20px 24px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: 12,
-            }}
-          >
-            <div style={{ textAlign: "left" }}>
-              <p
-                style={{
-                  fontFamily: "'Jost',sans-serif",
-                  fontSize: 9,
-                  letterSpacing: "0.25em",
-                  color: "#A89060",
-                  textTransform: "uppercase",
-                  margin: "0 0 6px",
-                }}
-              >
-                Орналасқан жері
-              </p>
-              <p
-                style={{
-                  fontFamily: "'Cormorant Garamond',serif",
-                  fontSize: 20,
-                  fontWeight: 600,
-                  color: "#3D2012",
-                  margin: "0 0 4px",
-                  lineHeight: 1.2,
-                }}
-              >
-                Grand Festival
-              </p>
-              <p
-                style={{
-                  fontFamily: "'Cormorant Garamond',serif",
-                  fontSize: 20,
-                  fontWeight: "bold",
-                  color: "#7A6245",
-                  margin: 0,
-                  lineHeight: 1.4,
-                }}
-              >
-                пр. Достык, 52/2 · Астана
-              </p>
-            </div>
             <div
               style={{
-                background: "#A89060",
-                borderRadius: 8,
-                padding: "8px 14px",
+                background: "rgba(253,246,236,0.97)",
+                padding: "20px 24px",
                 display: "flex",
-                flexDirection: "column",
                 alignItems: "center",
-                gap: 2,
-                flexShrink: 0,
+                justifyContent: "space-between",
+                gap: 12,
               }}
             >
-              <span
+              <div style={{ textAlign: "left" }}>
+                <p
+                  style={{
+                    fontFamily: "'Jost',sans-serif",
+                    fontSize: 9,
+                    letterSpacing: "0.25em",
+                    color: "#A89060",
+                    textTransform: "uppercase",
+                    margin: "0 0 6px",
+                  }}
+                >
+                  Орналасқан жері
+                </p>
+                <p
+                  style={{
+                    fontFamily: "'Cormorant Garamond',serif",
+                    fontSize: 20,
+                    fontWeight: 600,
+                    color: "#3D2012",
+                    margin: "0 0 4px",
+                    lineHeight: 1.2,
+                  }}
+                >
+                  Grand Festival мейрамханасы
+                </p>
+                <p
+                  style={{
+                    fontFamily: "'Cormorant Garamond',serif",
+                    fontSize: 20,
+                    fontWeight: "bold",
+                    color: "#7A6245",
+                    margin: 0,
+                    lineHeight: 1.4,
+                  }}
+                >
+                  пр. Достык, 52/2 · Астана
+                </p>
+              </div>
+              <div
                 style={{
-                  fontSize: 20,
-                  fontFamily: "'Jost',sans-serif",
-                  color: "#fff",
-                  fontWeight: 700,
-                  letterSpacing: "0.05em",
+                  background: "#A89060",
+                  borderRadius: 8,
+                  padding: "8px 14px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: 2,
+                  flexShrink: 0,
                 }}
               >
-                2GIS ↗
-              </span>
+                <span
+                  style={{
+                    fontSize: 20,
+                    fontFamily: "'Jost',sans-serif",
+                    color: "#fff",
+                    fontWeight: 700,
+                    letterSpacing: "0.05em",
+                  }}
+                >
+                  2GIS ↗
+                </span>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </>

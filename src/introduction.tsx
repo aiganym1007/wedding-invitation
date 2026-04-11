@@ -1,4 +1,3 @@
-import CornerOrnament from "./corner";
 import Decor from "./decor";
 import { useEffect, useState } from "react";
 import Visit from "./assets/visit.png";
@@ -218,7 +217,6 @@ export default function Introduction({
         <>
           <Decor />
           <style>{FONTS}</style>
-          <CornerOrnament flip />
           <img
             src={Visit}
             alt="Visit"

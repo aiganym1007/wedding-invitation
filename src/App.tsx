@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from "react";
-import Introduction, { ScreenHeight, ScreenWidth } from "./introduction";
+import Introduction, { ScreenHeight } from "./introduction";
 import InvitationSection from "./letter";
 import Details from "./details";
 import Form from "./form";
@@ -184,8 +184,6 @@ export default function WeddingInvitation() {
                 src={Tore}
                 style={{
                   height: ScreenHeight(20),
-                  marginLeft: ScreenWidth(26),
-                  marginRight: ScreenWidth(20),
                   opacity: 0.6,
                   zIndex: 100,
                 }}
@@ -232,8 +230,6 @@ export default function WeddingInvitation() {
                 src={Tore}
                 style={{
                   height: ScreenHeight(20),
-                  marginLeft: ScreenWidth(26),
-                  marginRight: ScreenWidth(20),
                   opacity: 0.6,
                   zIndex: 100,
                 }}

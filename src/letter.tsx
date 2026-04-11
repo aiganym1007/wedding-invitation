@@ -1,4 +1,3 @@
-import CornerOrnament from "./corner";
 interface InvitationSectionProps {
   sectionRef: React.RefObject<HTMLDivElement | null>;
 }
@@ -21,7 +20,6 @@ export default function InvitationSection({
         position: "relative",
       }}
     >
-      <CornerOrnament flip />
       <div style={{ width: "100%", maxWidth: 640, margin: "0 auto" }}>
         <p
           style={{
