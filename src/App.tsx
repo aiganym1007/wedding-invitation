@@ -159,16 +159,23 @@ export default function WeddingInvitation() {
         </div>
         <InvitationSection sectionRef={inviteRefs} />
         <Schedule sectionRef={schedule} />
-        <img
-          src={Tore}
+        <div
           style={{
-            height: ScreenHeight(20),
-            marginLeft: ScreenWidth(26),
-            marginRight: ScreenWidth(20),
-            opacity: 0.6,
-            zIndex: 100,
+            display: "flex",
+            justifyContent: "center",
           }}
-        />
+        >
+          <img
+            src={Tore}
+            style={{
+              height: ScreenHeight(20),
+              marginLeft: ScreenWidth(26),
+              marginRight: ScreenWidth(20),
+              opacity: 0.6,
+              zIndex: 100,
+            }}
+          />
+        </div>
         <div ref={dressCode}>
           <p
             style={{
@@ -200,16 +207,23 @@ export default function WeddingInvitation() {
         </div>
 
         <Details sectionRef={detailsRefs} />
-        <img
-          src={Tore}
+        <div
           style={{
-            height: ScreenHeight(20),
-            marginLeft: ScreenWidth(26),
-            marginRight: ScreenWidth(20),
-            opacity: 0.6,
-            zIndex: 100,
+            display: "flex",
+            justifyContent: "center",
           }}
-        />
+        >
+          <img
+            src={Tore}
+            style={{
+              height: ScreenHeight(20),
+              marginLeft: ScreenWidth(26),
+              marginRight: ScreenWidth(20),
+              opacity: 0.6,
+              zIndex: 100,
+            }}
+          />
+        </div>
         <Form sectionRef={formRefs} />
 
         <Introduction closing={true} sectionRef={closingRefs} />
