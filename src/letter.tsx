@@ -67,7 +67,7 @@ export default function InvitationSection({
               lineHeight: 1.4,
             }}
           >
-            Сізді асыға күтеміз
+            Сіздерді асыға күтеміз
           </p>
         </div>
       </div>
