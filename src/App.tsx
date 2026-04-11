@@ -142,16 +142,21 @@ export default function WeddingInvitation() {
         />
         <NavDots current={current} total={5} onNav={navTo} />
         <Introduction sectionRef={introductionRefs} />
-        <img
-          src={Tore}
+        <div
           style={{
-            marginTop: ScreenHeight(5),
-            height: ScreenHeight(20),
-            margin: "0 auto",
-            opacity: 0.6,
-            zIndex: 100,
+            display: "flex",
+            justifyContent: "center",
           }}
-        />
+        >
+          <img
+            src={Tore}
+            style={{
+              marginTop: ScreenHeight(5),
+              height: ScreenHeight(20),
+              opacity: 0.6,
+            }}
+          />
+        </div>
         <InvitationSection sectionRef={inviteRefs} />
         <Schedule sectionRef={schedule} />
         <img
