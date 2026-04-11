@@ -332,7 +332,7 @@ export default function Introduction({
                 }}
                 className="wi-subtitle"
               >
-                Той иесі: Насирова Алима мен Сейтенов Берік
+                Той иесі: Алима мен Берік
               </span>
             </div>
           </div>
