@@ -1,9 +1,13 @@
-export default function WeddingSchedule() {
+import { ScreenWidth } from "./introduction";
+interface DetailsProps {
+  sectionRef: React.RefObject<HTMLDivElement | null>;
+}
+export default function WeddingSchedule({ sectionRef }: DetailsProps) {
   const schedule = [
     {
       time: "16:30",
       lines: ["ҚОНАҚТАРДЫҢ", "ЖИНАЛУЫ"],
-      cx: 50,
+      cx: ScreenWidth(15),
       textY: [188, 208, 222],
     },
     {
@@ -26,6 +30,7 @@ export default function WeddingSchedule() {
   const totalWidth = dates.length * boxSize + (dates.length - 1) * gap;
   return (
     <div
+      ref={sectionRef}
       style={{
         display: "flex",
         justifyContent: "center",
@@ -111,7 +116,6 @@ export default function WeddingSchedule() {
           strokeLinecap="round"
         />
         <circle cx="160" cy="142" r="5" fill="#c9a96e" />
-
         {schedule.map(({ time, lines, cx, textY }) => (
           <g key={time}>
             <text

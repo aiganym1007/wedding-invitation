@@ -79,9 +79,19 @@ export default function WeddingInvitation() {
   const inviteRefs = useRef<HTMLDivElement | null>(null);
   const detailsRefs = useRef<HTMLDivElement | null>(null);
   const formRefs = useRef<HTMLDivElement | null>(null);
+  const dressCode = useRef<HTMLDivElement | null>(null);
+  const schedule = useRef<HTMLDivElement | null>(null);
 
   const refs = useMemo(
-    () => [introductionRefs, inviteRefs, detailsRefs, formRefs, closingRefs],
+    () => [
+      introductionRefs,
+      inviteRefs,
+      schedule,
+      dressCode,
+      detailsRefs,
+      formRefs,
+      closingRefs,
+    ],
     [],
   );
   const [current, setCurrent] = useState(0);
@@ -132,34 +142,36 @@ export default function WeddingInvitation() {
         <NavDots current={current} total={5} onNav={navTo} />
         <Introduction sectionRef={introductionRefs} />
         <InvitationSection sectionRef={inviteRefs} />
-        <Schedule />
-        <p
-          style={{
-            marginTop: ScreenHeight(20),
-            marginBottom: -ScreenHeight(5),
-            fontFamily: "'Cormorant Garamond',serif",
-            fontSize: "clamp(25px,2.5vw,22px)",
-            lineHeight: 1.95,
-            color: "#B8973C",
-            textAlign: "center",
-            fontWeight: "bold",
-          }}
-        >
-          Киім үлгісі:
-        </p>
-        <p
-          style={{
-            textAlign: "center",
-            fontFamily: "'Cormorant Garamond',serif",
-            fontSize: "clamp(25px,1.5vw,22px)",
-            lineHeight: 1.95,
-            color: "#3D2012",
-            fontWeight: 300,
-            marginBottom: ScreenHeight(25),
-          }}
-        >
-          ұлттық нақыштағы киім құпталады{" "}
-        </p>
+        <Schedule sectionRef={schedule} />
+        <div ref={dressCode}>
+          <p
+            style={{
+              marginTop: ScreenHeight(20),
+              marginBottom: -ScreenHeight(5),
+              fontFamily: "'Cormorant Garamond',serif",
+              fontSize: "clamp(25px,2.5vw,22px)",
+              lineHeight: 1.95,
+              color: "#B8973C",
+              textAlign: "center",
+              fontWeight: "bold",
+            }}
+          >
+            Киім үлгісі:
+          </p>
+          <p
+            style={{
+              textAlign: "center",
+              fontFamily: "'Cormorant Garamond',serif",
+              fontSize: "clamp(25px,1.5vw,22px)",
+              lineHeight: 1.95,
+              color: "#3D2012",
+              fontWeight: 300,
+              marginBottom: ScreenHeight(25),
+            }}
+          >
+            ұлттық нақыштағы киім құпталады{" "}
+          </p>
+        </div>
         <Details sectionRef={detailsRefs} />
         <Form sectionRef={formRefs} />
         <Introduction closing={true} sectionRef={closingRefs} />
