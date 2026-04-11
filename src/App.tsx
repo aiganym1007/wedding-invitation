@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef, useMemo } from "react";
-import Introduction, { ScreenHeight } from "./introduction";
+import Introduction, { ScreenHeight, ScreenWidth } from "./introduction";
 import InvitationSection from "./letter";
 import Details from "./details";
 import Form from "./form";
 import Schedule from "./schedule";
+import Tore from "./assets/image-Photoroom.png";
 import OldPaper from "./assets/image.png";
 const FONTS = `
 @keyframes floatUpRotate {
@@ -141,8 +142,29 @@ export default function WeddingInvitation() {
         />
         <NavDots current={current} total={5} onNav={navTo} />
         <Introduction sectionRef={introductionRefs} />
+        <img
+          src={Tore}
+          style={{
+            marginTop: ScreenHeight(5),
+            height: ScreenHeight(20),
+            marginLeft: ScreenWidth(26),
+            marginRight: ScreenWidth(20),
+            opacity: 0.6,
+            zIndex: 100,
+          }}
+        />
         <InvitationSection sectionRef={inviteRefs} />
         <Schedule sectionRef={schedule} />
+        <img
+          src={Tore}
+          style={{
+            height: ScreenHeight(20),
+            marginLeft: ScreenWidth(26),
+            marginRight: ScreenWidth(20),
+            opacity: 0.6,
+            zIndex: 100,
+          }}
+        />
         <div ref={dressCode}>
           <p
             style={{
@@ -172,8 +194,39 @@ export default function WeddingInvitation() {
             ұлттық нақыштағы киім құпталады{" "}
           </p>
         </div>
+        <img
+          src={Tore}
+          style={{
+            height: ScreenHeight(20),
+            marginLeft: ScreenWidth(26),
+            marginRight: ScreenWidth(20),
+            opacity: 0.6,
+            zIndex: 100,
+          }}
+        />
         <Details sectionRef={detailsRefs} />
+        <img
+          src={Tore}
+          style={{
+            height: ScreenHeight(20),
+            marginLeft: ScreenWidth(26),
+            marginRight: ScreenWidth(20),
+            opacity: 0.6,
+            zIndex: 100,
+          }}
+        />
         <Form sectionRef={formRefs} />
+        <img
+          src={Tore}
+          style={{
+            height: ScreenHeight(20),
+            marginLeft: ScreenWidth(26),
+            marginRight: ScreenWidth(20),
+            marginBottom: ScreenHeight(5),
+            opacity: 0.6,
+            zIndex: 100,
+          }}
+        />
         <Introduction closing={true} sectionRef={closingRefs} />
       </div>
     </>

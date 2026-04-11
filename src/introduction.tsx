@@ -2,7 +2,6 @@ import CornerOrnament from "./corner";
 import Decor from "./decor";
 import { useEffect, useState } from "react";
 import Visit from "./assets/visit.png";
-import Tore from "./assets/image-Photoroom.png";
 export function ScreenHeight(percent: number) {
   return (window.innerHeight * percent) / 100;
 }
@@ -72,10 +71,11 @@ const FONTS = `
     text-shadow: 0 0 80px rgba(185,148,58,.18);
   }
   .wi-subtitle {
-    font-family: 'Great Vibes', cursive;
-    font-size: clamp(10px, 7vw, 128px);
-    color: #e3b10e;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(10px, 6vw, 128px);
+    color: #b09551;
     line-height: 1.05;
+        font-style: italic;
     animation: fadeUp 1.1s ease forwards;
     animation-delay: .55s;
     opacity: 0;
@@ -293,18 +293,9 @@ export default function Introduction({
                 }}
               />
             ))}
-            <img
-              src={Tore}
-              style={{
-                height: ScreenHeight(20),
-                marginTop: closing ? -ScreenHeight(5) : ScreenHeight(20),
-                marginBottom: closing ? -ScreenHeight(5) : -ScreenHeight(20),
-                opacity: 0.6,
-              }}
-            />
             <div
               style={{
-                marginTop: closing ? ScreenHeight(10) : ScreenHeight(20),
+                marginTop: closing ? ScreenHeight(10) : ScreenHeight(40),
                 position: "relative",
                 zIndex: 2,
                 display: "flex",
