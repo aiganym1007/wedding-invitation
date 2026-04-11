@@ -147,8 +147,7 @@ export default function WeddingInvitation() {
           style={{
             marginTop: ScreenHeight(5),
             height: ScreenHeight(20),
-            marginLeft: ScreenWidth(26),
-            marginRight: ScreenWidth(20),
+            margin: "0 auto",
             opacity: 0.6,
             zIndex: 100,
           }}
