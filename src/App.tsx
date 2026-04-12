@@ -166,7 +166,7 @@ export default function WeddingInvitation() {
               <img
                 src={Tore}
                 style={{
-                  marginTop: ScreenHeight(5),
+                  marginTop: ScreenHeight(7),
                   height: ScreenHeight(20),
                   opacity: 0.6,
                 }}

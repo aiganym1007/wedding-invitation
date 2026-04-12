@@ -71,7 +71,7 @@ const FONTS = `
   }
   .wi-subtitle {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(10px, 6vw, 128px);
+    font-size: clamp(10px, 9vw, 128px);
     color: #b09551;
     line-height: 1.05;
         font-style: italic;
@@ -330,7 +330,7 @@ export default function Introduction({
                 }}
                 className="wi-subtitle"
               >
-                Той иесі: Алима мен Берік
+                Той иесі: Берік пен Алима
               </span>
             </div>
           </div>
