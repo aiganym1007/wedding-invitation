@@ -80,6 +80,17 @@ const FONTS = `
     opacity: 0;
     text-shadow: 0 0 80px rgba(185,148,58,.18);
   }
+  .wi-subtitle2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(10px, 5vw, 128px);
+    color: #b09551;
+    line-height: 1.05;
+        font-style: italic;
+    animation: fadeUp 1.1s ease forwards;
+    animation-delay: .55s;
+    opacity: 0;
+    text-shadow: 0 0 80px rgba(185,148,58,.18);
+  }
   .wi-ampersand {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
@@ -209,11 +220,9 @@ export default function Introduction({
     return () => window.removeEventListener("resize", checkIfMobile);
   }, []);
 
-  if (!isMobile) return null;
-
   return (
     <>
-      {isMobile && (
+      {isMobile ? (
         <>
           <Decor />
           <style>{FONTS}</style>
@@ -329,6 +338,128 @@ export default function Introduction({
                   marginBottom: ScreenHeight(15),
                 }}
                 className="wi-subtitle"
+              >
+                Той иесі: Берік пен Алима
+              </span>
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          <Decor />
+          <style>{FONTS}</style>
+          <img
+            src={Visit}
+            alt="Visit"
+            style={{
+              height: ScreenHeight(40),
+              marginBottom: -ScreenHeight(30),
+              zIndex: 100,
+              position: "fixed",
+            }}
+          />
+          <img
+            src={Visit}
+            alt="Visit"
+            style={{
+              height: ScreenHeight(40),
+              right: ScreenWidth(1),
+              marginBottom: -ScreenHeight(30),
+              zIndex: 100,
+              position: "fixed",
+            }}
+          />
+          <img
+            src={Visit}
+            alt="Visit"
+            style={{
+              height: ScreenHeight(25),
+              marginBottom: -ScreenHeight(15),
+              zIndex: 100,
+              left: ScreenWidth(22),
+              position: "fixed",
+            }}
+          />
+          <img
+            src={Visit}
+            alt="Visit"
+            style={{
+              position: "fixed",
+              height: ScreenHeight(25),
+              right: ScreenWidth(22),
+              marginBottom: -ScreenHeight(30),
+              zIndex: 100,
+            }}
+          />
+          <div
+            ref={sectionRef}
+            className="bg-wrapper"
+            style={{
+              marginTop: -ScreenHeight(10),
+              position: "relative",
+              width: "100%",
+              minHeight: "100vh",
+              overflowY: "hidden",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              textAlign: "center",
+              boxSizing: "border-box",
+            }}
+          >
+            {PARTICLES.map((p) => (
+              <span
+                key={p.id}
+                className="wi-particle"
+                style={{
+                  left: p.left,
+                  bottom: "-4px",
+                  width: p.size,
+                  height: p.size,
+                  animationDelay: p.delay,
+                  animationDuration: p.duration,
+                }}
+              />
+            ))}
+            <div
+              style={{
+                marginTop: closing ? ScreenHeight(10) : ScreenHeight(40),
+                position: "relative",
+                zIndex: 2,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: 20,
+              }}
+            >
+              <p className="wi-eyebrow" style={{ marginBottom: 0 }}>
+                {closing ? "Махаббат пен ризашылықпен" : ""}
+              </p>
+              <OrnamentDivider />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexWrap: "wrap",
+                  zIndex: 1,
+                  gap: "0.3rem 0",
+                  lineHeight: 1,
+                }}
+              >
+                <span className="wi-names">Aqbota</span>
+
+                <span className="wi-names">Qyz Ūzatu</span>
+              </div>
+              <OrnamentDivider />
+              <span
+                style={{
+                  marginTop: ScreenHeight(10),
+                  marginBottom: ScreenHeight(15),
+                }}
+                className="wi-subtitle2"
               >
                 Той иесі: Берік пен Алима
               </span>

@@ -127,11 +127,10 @@ export default function WeddingInvitation() {
 
   const navTo = (i: number) =>
     refs[i].current?.scrollIntoView({ behavior: "smooth" });
-  if (!isMobile) return null;
 
   return (
     <>
-      {isMobile && (
+      {isMobile ? (
         <>
           <style>{FONTS}</style>
           <div
@@ -150,6 +149,116 @@ export default function WeddingInvitation() {
               style={{
                 position: "fixed",
                 height: "100%",
+                opacity: 0.4,
+                marginBottom: -ScreenHeight(30),
+                zIndex: 1,
+              }}
+            />
+            <NavDots current={current} total={5} onNav={navTo} />
+            <Introduction sectionRef={introductionRefs} />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <img
+                src={Tore}
+                style={{
+                  marginTop: ScreenHeight(7),
+                  height: ScreenHeight(20),
+                  opacity: 0.6,
+                }}
+              />
+            </div>
+            <InvitationSection sectionRef={inviteRefs} />
+            <Schedule sectionRef={schedule} />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <img
+                src={Tore}
+                style={{
+                  height: ScreenHeight(20),
+                  opacity: 0.6,
+                  zIndex: 100,
+                }}
+              />
+            </div>
+            <div ref={dressCode}>
+              <p
+                style={{
+                  marginTop: ScreenHeight(20),
+                  marginBottom: -ScreenHeight(5),
+                  fontFamily: "'Cormorant Garamond',serif",
+                  fontSize: "clamp(25px,2.5vw,22px)",
+                  lineHeight: 1.95,
+                  color: "#B8973C",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
+              >
+                Киім үлгісі:
+              </p>
+              <p
+                style={{
+                  textAlign: "center",
+                  fontFamily: "'Cormorant Garamond',serif",
+                  fontSize: "clamp(25px,1.5vw,22px)",
+                  lineHeight: 1.95,
+                  color: "#3D2012",
+                  fontWeight: 300,
+                  marginBottom: ScreenHeight(25),
+                }}
+              >
+                ұлттық нақыштағы киім құпталады{" "}
+              </p>
+            </div>
+
+            <Details sectionRef={detailsRefs} />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <img
+                src={Tore}
+                style={{
+                  height: ScreenHeight(20),
+                  opacity: 0.6,
+                  zIndex: 100,
+                }}
+              />
+            </div>
+            <Form sectionRef={formRefs} />
+
+            <Introduction closing={true} sectionRef={closingRefs} />
+          </div>
+        </>
+      ) : (
+        <>
+          <style>{FONTS}</style>
+          <div
+            className="bg-wrapper"
+            style={{
+              overflowX: "hidden",
+              overflowY: "hidden",
+              fontFamily: "'Cormorant Garamond',serif",
+              background:
+                "radial-gradient(ellipse 70% 60% at 50% 50%, #FDF6EC 0%, #f1e3d2 100%)",
+            }}
+          >
+            <img
+              src={OldPaper}
+              alt="Old Paper"
+              style={{
+                position: "fixed",
+                height: "100%",
+                width: "100%",
                 opacity: 0.4,
                 marginBottom: -ScreenHeight(30),
                 zIndex: 1,

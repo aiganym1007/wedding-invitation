@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const STYLES = `@keyframes floatBobFlower {
   0%,100% { transform: translateY(0px); }
@@ -103,17 +103,6 @@ export default function Form({ sectionRef }: FromsProps) {
     borderTop: "1px solid #E8D5A0",
     margin: "24px 0",
   };
-
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkIfMobile = () => setIsMobile(window.innerWidth < 768);
-    checkIfMobile();
-    window.addEventListener("resize", checkIfMobile);
-    return () => window.removeEventListener("resize", checkIfMobile);
-  }, []);
-
-  if (!isMobile) return null;
 
   return (
     <>
