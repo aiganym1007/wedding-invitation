@@ -56,7 +56,7 @@ export default function Form({ sectionRef }: FromsProps) {
         body.plusOne =
           `${form.plusOneFirstName} ${form.plusOneLastName}`.trim();
       }
-      const res = await fetch("https://formspree.io/f/mqegrdel", {
+      const res = await fetch("https://formspree.io/f/mwvwajkj", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -97,11 +97,6 @@ export default function Form({ sectionRef }: FromsProps) {
     fontSize: "clamp(11px, 3vw, 13px)",
     color: "#b03030",
     marginTop: 4,
-  };
-
-  const dividerStyle: React.CSSProperties = {
-    borderTop: "1px solid #E8D5A0",
-    margin: "24px 0",
   };
 
   return (
@@ -275,64 +270,6 @@ export default function Form({ sectionRef }: FromsProps) {
                   ))}
                 </div>
               </div>
-
-              {/* + 1 toggle */}
-              <div style={{ marginBottom: form.plusOne ? 16 : 20 }}>
-                <div style={dividerStyle} />
-                <button
-                  onClick={() => set("plusOne", !form.plusOne)}
-                  style={{
-                    width: "100%",
-                    padding: "11px 14px",
-                    border: `1px solid ${form.plusOne ? "#B8973C" : "#E8D5A0"}`,
-                    background: form.plusOne
-                      ? "rgba(184,151,60,0.08)"
-                      : "rgba(255,255,255)",
-                    color: form.plusOne ? "#B8973C" : "#7A6245",
-                    fontFamily: "'Jost',sans-serif",
-                    fontSize: "clamp(11px, 3vw, 13px)",
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    cursor: "pointer",
-                    transition: "all .25s",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: 8,
-                  }}
-                >
-                  <span style={{ fontSize: "1.2em", lineHeight: 1 }}>
-                    {form.plusOne ? "−" : "+"}
-                  </span>
-                  {form.plusOne
-                    ? "Қосымша қонақты алып тастау"
-                    : "Қосымша қонақ қосу (+1)"}
-                </button>
-              </div>
-
-              {/* + 1 поля */}
-              {form.plusOne && (
-                <div style={{ display: "flex", gap: 10, marginBottom: 20 }}>
-                  <div style={{ flex: 1 }}>
-                    <label style={labelStyle}>+1 Аты</label>
-                    <input
-                      style={fieldStyle(false)}
-                      value={form.plusOneFirstName}
-                      onChange={(e) => set("plusOneFirstName", e.target.value)}
-                      placeholder="Аты"
-                    />
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <label style={labelStyle}>+1 Тегі</label>
-                    <input
-                      style={fieldStyle(false)}
-                      value={form.plusOneLastName}
-                      onChange={(e) => set("plusOneLastName", e.target.value)}
-                      placeholder="Тегі"
-                    />
-                  </div>
-                </div>
-              )}
 
               {/* Тілек */}
               <div style={{ marginBottom: 28 }}>
