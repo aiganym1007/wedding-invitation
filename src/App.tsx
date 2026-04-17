@@ -209,8 +209,8 @@ export default function WeddingInvitation() {
                   fontFamily: "'Cormorant Garamond',serif",
                   fontSize: "clamp(25px,1.5vw,22px)",
                   lineHeight: 1.95,
-                  color: "#3D2012",
-                  fontWeight: 300,
+                  color: "#7d6b48",
+                  fontWeight: "bold",
                   marginBottom: ScreenHeight(25),
                 }}
               >
@@ -320,7 +320,7 @@ export default function WeddingInvitation() {
                   fontSize: "clamp(25px,1.5vw,22px)",
                   lineHeight: 1.95,
                   color: "#3D2012",
-                  fontWeight: 300,
+                  fontWeight: "bold",
                   marginBottom: ScreenHeight(25),
                 }}
               >

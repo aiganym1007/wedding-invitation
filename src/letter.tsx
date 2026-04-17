@@ -39,8 +39,8 @@ export default function InvitationSection({
               fontFamily: "'Cormorant Garamond',serif",
               fontSize: "clamp(25px,2.5vw,22px)",
               lineHeight: 1.95,
-              color: "#3D2012",
-              fontWeight: 300,
+              color: "#7d6b48",
+              fontWeight: 600,
             }}
           >
             Сіздерді аяулы қызымыз{" "}
@@ -64,6 +64,7 @@ export default function InvitationSection({
               fontStyle: "italic",
               color: "#B8973C",
               margin: 0,
+              fontWeight: 600,
               lineHeight: 1.4,
             }}
           >

@@ -42,8 +42,8 @@ export default function DetailsSection({ sectionRef }: DetailsProps) {
           style={{
             fontFamily: "'Cormorant Garamond',serif",
             fontSize: "clamp(32px,5vw,52px)",
-            fontWeight: 300,
-            color: "#3D2012",
+            fontWeight: "bold",
+            color: "#7d6b48",
             margin: "0 0 32px",
             fontStyle: "italic",
           }}

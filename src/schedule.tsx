@@ -123,6 +123,7 @@ export default function WeddingSchedule({ sectionRef }: DetailsProps) {
               y={textY[0]}
               textAnchor="middle"
               fontSize="20"
+              fontWeight="bold"
               fontStyle="italic"
               fill="#7a5c3a"
             >
@@ -135,6 +136,7 @@ export default function WeddingSchedule({ sectionRef }: DetailsProps) {
                 y={textY[i + 1]}
                 textAnchor="middle"
                 fontSize="11"
+                fontWeight="bold"
                 fill="#555"
                 letterSpacing="1.5"
               >
