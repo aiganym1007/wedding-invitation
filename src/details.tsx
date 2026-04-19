@@ -139,7 +139,7 @@ export default function DetailsSection({ sectionRef }: DetailsProps) {
                     lineHeight: 1.4,
                   }}
                 >
-                  пр. Достык, 52/2 · Астана
+                  пр. Достык, 4 · Астана
                 </p>
               </div>
               <div
