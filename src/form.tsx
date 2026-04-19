@@ -132,8 +132,8 @@ export default function Form({ sectionRef }: FromsProps) {
             style={{
               fontFamily: "'Cormorant Garamond',serif",
               fontSize: "clamp(28px, 7vw, 50px)",
-              fontWeight: "bold",
-              color: "#7d6b48",
+              fontWeight: 300,
+              color: "#3D2012",
               margin: "0 0 8px",
               fontStyle: "italic",
             }}

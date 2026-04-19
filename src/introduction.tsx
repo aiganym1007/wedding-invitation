@@ -336,7 +336,6 @@ export default function Introduction({
                 style={{
                   marginTop: ScreenHeight(10),
                   marginBottom: ScreenHeight(15),
-                  fontWeight: "bold",
                 }}
                 className="wi-subtitle"
               >
@@ -458,7 +457,6 @@ export default function Introduction({
               <span
                 style={{
                   marginTop: ScreenHeight(10),
-                  fontWeight: "bold",
                   marginBottom: ScreenHeight(15),
                 }}
                 className="wi-subtitle2"
