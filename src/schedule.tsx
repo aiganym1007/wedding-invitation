@@ -7,7 +7,7 @@ export default function WeddingSchedule({ sectionRef }: DetailsProps) {
     {
       time: "16:30",
       lines: ["ҚОНАҚТАРДЫҢ", "ЖИНАЛУЫ"],
-      cx: ScreenWidth(15),
+      cx: ScreenWidth(13),
       textY: [188, 208, 222],
     },
     {

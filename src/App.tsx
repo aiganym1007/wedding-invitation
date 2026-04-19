@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from "react";
-import Introduction, { ScreenHeight } from "./introduction";
+import Introduction, { ScreenHeight, ScreenWidth } from "./introduction";
 import InvitationSection from "./letter";
 import Details from "./details";
 import Form from "./form";
@@ -45,7 +45,7 @@ function NavDots({
     <div
       style={{
         position: "fixed",
-        right: 20,
+        right: ScreenWidth(3),
         top: "50%",
         transform: "translateY(-50%)",
         display: "flex",
@@ -210,11 +210,13 @@ export default function WeddingInvitation() {
                   fontSize: "clamp(25px,1.5vw,22px)",
                   lineHeight: 1.95,
                   color: "#3D2012",
+                  width: "90%",
+                  marginLeft: ScreenWidth(4),
                   fontWeight: 300,
                   marginBottom: ScreenHeight(25),
                 }}
               >
-                ұлттық нақыштағы киім құпталады{" "}
+                ұлттық нақыштағы киім құпталады
               </p>
             </div>
 
