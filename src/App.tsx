@@ -6,6 +6,7 @@ import Form from "./form";
 import Schedule from "./schedule";
 import Tore from "./assets/image-Photoroom.png";
 import OldPaper from "./assets/image.png";
+import soundtrack from "./assets/leberch-invitation-wedding-375839.mp3";
 const FONTS = `
 @keyframes floatUpRotate {
   0% { transform: rotate(0deg); }
@@ -82,7 +83,44 @@ export default function WeddingInvitation() {
   const formRefs = useRef<HTMLDivElement | null>(null);
   const dressCode = useRef<HTMLDivElement | null>(null);
   const schedule = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    let audio: HTMLAudioElement | null = null;
 
+    const handleFirstInteraction = () => {
+      if (audio) return; // уже запустили
+
+      // Создаём и запускаем ВНУТРИ обработчика — это ключевое для Android
+      audio = new Audio(soundtrack);
+      audio.loop = true;
+      audio.volume = 0.4;
+
+      // Нужен для разблокировки AudioContext на Android
+      type AudioContextConstructor = typeof window.AudioContext;
+      const AudioContext: AudioContextConstructor | undefined =
+        window.AudioContext ||
+        (window as unknown as { webkitAudioContext?: AudioContextConstructor })
+          .webkitAudioContext;
+      if (AudioContext) {
+        const ctx = new AudioContext();
+        ctx.resume();
+      }
+
+      audio.play().catch(() => {});
+
+      document.removeEventListener("touchend", handleFirstInteraction);
+      document.removeEventListener("click", handleFirstInteraction);
+    };
+
+    // touchend надёжнее touchstart на Android
+    document.addEventListener("touchend", handleFirstInteraction);
+    document.addEventListener("click", handleFirstInteraction);
+
+    return () => {
+      audio?.pause();
+      document.removeEventListener("touchend", handleFirstInteraction);
+      document.removeEventListener("click", handleFirstInteraction);
+    };
+  }, []);
   const refs = useMemo(
     () => [
       introductionRefs,
